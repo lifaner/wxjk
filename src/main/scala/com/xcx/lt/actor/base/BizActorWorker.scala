@@ -24,7 +24,7 @@ trait BizActorWorker extends Actor {
                     // t.getStackTrace.map { x => egflog.error(x.toString()) }
                 }
             }
-            // killSelf
+            //killSelf
         }
     }
     
