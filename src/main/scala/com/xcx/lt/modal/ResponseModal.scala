@@ -20,3 +20,17 @@ case class AppQueryResult(isSucceeded: Boolean, msg: String, total: Int, data: A
   * 返回：isSucceeded:(TRUE操作成功,FALSE操作失败)；msg:处理信息
   */
 case class UpdateResult(isSucceeded: Boolean, msg: String)
+
+
+/**
+  * 登录校验结果封装
+  */
+case class LoginCheckResponse(flag: String, msg: String) extends AppResponse
+/**
+  * 登录结果
+  */
+case class LoginResultResponse(flag: String, msg: String, userId: String, username: String) extends AppResponse
+/**
+  * 异常结果封装
+  */
+case class ExceptionResponse(status: String, messages: String, errorCode: String) extends AppResponse
