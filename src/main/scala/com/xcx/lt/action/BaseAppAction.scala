@@ -45,12 +45,12 @@ private[action] trait BaseAppAction extends ActorAction{
       * 前置过滤器
       */
     beforeFilter {
-        log.debug("进入Action前置过滤器。")
+//        log.debug("进入Action前置过滤器。")
 //        checkLogin
 //        checkAuthorization
 //        checkParam
         getParam
-        log.debug("Action前置过滤器结束。")
+//        log.debug("Action前置过滤器结束。")
     }
     
     /**

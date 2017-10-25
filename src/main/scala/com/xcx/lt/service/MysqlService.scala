@@ -33,7 +33,8 @@ trait MysqlService extends Log {
             ps = conn.prepareStatement(sql)
             var i: Int = 1
             if (v != null) v.foreach { x => {
-                ps.setString(i, x); i = i + 1
+                ps.setString(i, x);
+                i = i + 1
             }
             }
             rs = ps.executeQuery()
@@ -66,7 +67,8 @@ trait MysqlService extends Log {
             ps = conn.prepareStatement(sql)
             var i: Int = 1
             if (v != null && v.length > 0) v.foreach { x => {
-                ps.setString(i, x); i = i + 1
+                ps.setString(i, x);
+                i = i + 1
             }
             }
             rs = ps.executeQuery()
@@ -95,7 +97,8 @@ trait MysqlService extends Log {
             ps = conn.prepareStatement(sql)
             var i: Int = 1
             if (v != null) v.foreach { x => {
-                ps.setObject(i, x); i = i + 1
+                ps.setObject(i, x);
+                i = i + 1
             }
             }
             rtn = ps.executeUpdate()
@@ -124,13 +127,13 @@ trait MysqlService extends Log {
             }
             
             //拼接查询sql
-//            val searchSql = "select * from (select row_.*, rownum rownum_ from (" + sql + " " +
-//              ") row_ ) where  rownum_ >" + ((number - 1) * size) +
-//              " and rownum_<= " + (number * size) + "";
+            //            val searchSql = "select * from (select row_.*, rownum rownum_ from (" + sql + " " +
+            //              ") row_ ) where  rownum_ >" + ((number - 1) * size) +
+            //              " and rownum_<= " + (number * size) + "";
             val searchSql = sql + " limit " + ((number - 1) * size) + "," + size
             
             //拼接总数sql
-            val countSql = "select count(*) count_info_1 from (" + sql + " " + ")";
+            val countSql = "select count(*) count_info_1 from (" + sql + " " + ") as t_info";
             
             /*val count = this.singleQuery(countSql, v).toInt
             val list = this.query(searchSql, v)*/
@@ -147,7 +150,7 @@ object test extends MysqlService {
     
     def main(args: Array[String]): Unit = {
         val sql = "select * from country "
-        val result = this.query(sql,Seq())
+        val result = this.query(sql, Seq())
         println(result)
     }
 }
