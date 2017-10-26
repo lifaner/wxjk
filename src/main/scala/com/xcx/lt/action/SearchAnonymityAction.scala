@@ -25,12 +25,12 @@ class SearchMsgAction extends BaseAppAction {
                         respondJson(rs)
                     }
                     case _ => {
-                        respondJson(AppQueryResult(true, "successed", -1, null))
+                        respondJson(AppQueryResult(true, "succeed", 0, null))
                     }
                 }
             }
             case _ => {
-                respondJson(AppQueryResult(false, "fail", 0, null))
+                respondJson(AppQueryResult(false, "fail", -1, null))
             }
         }
     }
@@ -51,12 +51,12 @@ class SaveUserAction extends BaseAppAction with SkipCsrfCheck {
                         respondJson(rs)
                     }
                     case _ => {
-                        respondJson(AppQueryResult(true, "successed", -1, null))
+                        respondJson(AppQueryResult(true, "succeed", 0, null))
                     }
                 }
             }
             case _ => {
-                respondJson(AppQueryResult(false, "fail", 0, null))
+                respondJson(AppQueryResult(false, "fail", -1, null))
             }
         }
     }
@@ -77,12 +77,12 @@ class SaveMsgAction extends BaseAppAction with SkipCsrfCheck {
                         respondJson(rs)
                     }
                     case _ => {
-                        respondJson(AppQueryResult(true, "succeeded", -1, null))
+                        respondJson(AppQueryResult(true, "succeed", 0, null))
                     }
                 }
             }
             case _ => {
-                respondJson(AppQueryResult(false, "fail", 0, null))
+                respondJson(AppQueryResult(false, "fail", -1, null))
             }
         }
     }

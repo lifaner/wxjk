@@ -22,7 +22,7 @@ object AnonymityMsgService extends MysqlService{
     }
     
     
-    def saveAnonymitMsg(sysId: String, username: String) = {
+    def saveUserinfo(sysId: String, username: String) = {
         val sql =
             """
               |insert into lt_user_info(id,sys_id,username,photo,status,create_date)

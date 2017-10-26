@@ -5,13 +5,6 @@ import com.xcx.lt.modal.com.egfbank.prm.actor.base.AppQueryResult
 import com.xcx.lt.modal.{EventRequest, ExecuteResult}
 import com.xcx.lt.service.Anonymity.AnonymityMsgService
 
-class SearchAnonymityMsgActor extends BizActorWorker {
-    override def execute(request: EventRequest) = {
-        val res = AnonymityMsgService.searchCountry()
-        Some(ExecuteResult(request.id, AppQueryResult(true, "查询成功！", 1, res)))
-    }
-}
-
 class SearchMsgListActor extends BizActorWorker {
     override def execute(request: EventRequest) = {
         val userId = request.param("userId")
@@ -19,10 +12,10 @@ class SearchMsgListActor extends BizActorWorker {
         val size = request.param("size")
         var list = AnonymityMsgService.searchUserInfoByUserId(userId)
         if (list.size == 0) {
-            Some(ExecuteResult(request.id, AppQueryResult(true, "查询成功！", 1, List())))
+            Some(ExecuteResult(request.id, AppQueryResult(true, "查询成功！", 0, List())))
         } else {
-            val msgList = AnonymityMsgService.findMsgListByUserId(list(0)("id"), index, size)
-            Some(ExecuteResult(request.id, AppQueryResult(true, "查询成功！", 1, msgList)))
+            val res = AnonymityMsgService.findMsgListByUserId(list(0)("id"), index, size)
+            Some(ExecuteResult(request.id, AppQueryResult(true, "查询成功！", res.totalCount, res.dataList)))
         }
     }
 }
@@ -37,9 +30,9 @@ class SaveUserInfoActor extends BizActorWorker {
         if (list.size == 0) {
             Some(ExecuteResult(request.id, AppQueryResult(true, "保存成功！", res, res)))
         } else {
-            res = AnonymityMsgService.saveAnonymitMsg(sys_id, username)
+            res = AnonymityMsgService.saveUserinfo(sys_id, username)
+            Some(ExecuteResult(request.id, AppQueryResult(true, "保存成功！", res, res)))
         }
-        Some(ExecuteResult(request.id, AppQueryResult(true, "保存成功！", res, res)))
     }
 }
 
