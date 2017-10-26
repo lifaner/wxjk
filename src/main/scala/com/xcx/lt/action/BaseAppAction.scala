@@ -62,6 +62,7 @@ private[action] trait BaseAppAction extends ActorAction{
         } catch {
             case ex: xitrum.exception.MissingParam => {
                 val msg = ex.getMessage
+                log.error(msg)
                 respondJson(ExceptionResponse("-1", "exception", "parameter $msg not exist"))
             }
             case ex: java.sql.SQLException => {
